@@ -14,3 +14,7 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 func AboutPage(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "about.gohtml")
 }
+
+func ProjectPage(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "project.gohtml")
+}

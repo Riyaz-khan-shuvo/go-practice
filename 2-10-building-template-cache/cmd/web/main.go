@@ -14,5 +14,6 @@ func main() {
 
 	http.HandleFunc("/", handlers.HomePage)
 	http.HandleFunc("/about", handlers.AboutPage)
+	http.HandleFunc("/project", handlers.ProjectPage)
 	http.ListenAndServe(portNumber, nil)
 }
