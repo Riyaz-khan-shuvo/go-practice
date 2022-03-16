@@ -22,9 +22,10 @@ func main() {
 
 	app.TemplateCache = tc
 
+	render.NewTemplate(&app)
+
 	fmt.Println("Listing the port http://localhost" + portNumber)
 	http.HandleFunc("/", handler.HomePage)
 	http.HandleFunc("/about", handler.AboutPage)
-
 	http.ListenAndServe(portNumber, nil)
 }
