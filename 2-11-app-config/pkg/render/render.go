@@ -20,8 +20,13 @@ func NewTemplate(a *config.AppConfig) {
 }
 
 func RenderPages(w http.ResponseWriter, temp string) {
+	var tc map[string]*template.Template
 
-	tc := app.TemplateCache
+	if app.UseCache {
+		tc = app.TemplateCache
+	} else {
+		tc, _ = CreateTemplatePage()
+	}
 
 	// tc, err := CreateTemplatePage()
 	// if err != nil {

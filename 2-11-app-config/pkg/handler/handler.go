@@ -31,13 +31,13 @@ func NewHandlers(r *Repository) {
 	Repo = r
 }
 
-func HomePage(w http.ResponseWriter, r *http.Request) {
+func (m *Repository) HomePage(w http.ResponseWriter, r *http.Request) {
 
 	render.RenderPages(w, "home.gohtml")
 
 }
 
-func AboutPage(w http.ResponseWriter, r *http.Request) {
+func (m *Repository) AboutPage(w http.ResponseWriter, r *http.Request) {
 
 	render.RenderPages(w, "about.gohtml")
 
