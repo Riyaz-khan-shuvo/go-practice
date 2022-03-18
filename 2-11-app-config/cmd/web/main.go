@@ -22,10 +22,16 @@ func main() {
 
 	app.TemplateCache = tc
 
+	app.UseCache = false
+
+	repo := handler.NewRepo(&app)
+
+	handler.NewHandlers(repo)
+
 	render.NewTemplate(&app)
 
 	fmt.Println("Listing the port http://localhost" + portNumber)
-	http.HandleFunc("/", handler.HomePage)
-	http.HandleFunc("/about", handler.AboutPage)
+	http.HandleFunc("/", handler.Repo.HomePage)
+	http.HandleFunc("/about", handler.Repo.AboutPage)
 	http.ListenAndServe(portNumber, nil)
 }
