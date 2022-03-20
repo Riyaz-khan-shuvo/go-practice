@@ -6,16 +6,21 @@ import (
 	"net/http"
 	"path/filepath"
 	"text/template"
+
+	"github.com/Riyaz-khan-shuvo/go-practice/2-13-practice-more/pkg/config"
 )
 
 var functions = template.FuncMap{}
 
+var app *config.AppConfig
+
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
+
 func RenderPages(w http.ResponseWriter, temp string) {
 
-	tc, err := CreateTemplate()
-	if err != nil {
-		fmt.Println(err)
-	}
+	tc := app.TemplateCache
 	t, ok := tc[temp]
 
 	if !ok {
@@ -23,7 +28,7 @@ func RenderPages(w http.ResponseWriter, temp string) {
 	}
 	buf := new(bytes.Buffer)
 	_ = t.Execute(buf, nil)
-	_, err = buf.WriteTo(w)
+	_, err := buf.WriteTo(w)
 	if err != nil {
 		fmt.Println(err)
 	}
