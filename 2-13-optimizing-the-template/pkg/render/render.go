@@ -6,20 +6,30 @@ import (
 	"net/http"
 	"path/filepath"
 	"text/template"
+
+	"github.com/Riyaz-khan-shuvo/go-practice/2-13-optimizing-the-template/pkg/config"
 )
 
 var functions = template.FuncMap{}
 
+var app *config.AppConfig
+
+func NewTemplate(a *config.AppConfig) {
+	app = a
+}
+
 func RenderPage(w http.ResponseWriter, temp string) {
-	tc, err := CreateTemplate()
-	if err != nil {
-		fmt.Println(err)
-	}
+
+	tc := app.TemplateCache
+	// tc, err := CreateTemplate()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 	t, ok := tc[temp]
 
 	buf := new(bytes.Buffer)
 	_ = t.Execute(buf, nil)
-	_, err = buf.WriteTo(w)
+	_, err := buf.WriteTo(w)
 	if err != nil {
 		fmt.Println(err)
 	}

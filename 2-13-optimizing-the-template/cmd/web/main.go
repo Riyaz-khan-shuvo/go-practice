@@ -20,6 +20,8 @@ func main() {
 	}
 	app.TemplateCache = tc
 
+	render.NewTemplate(&app)
+
 	fmt.Println("Listing the port http://localhost" + portNumber)
 	http.HandleFunc("/", handlers.HomePage)
 	http.HandleFunc("/about", handlers.AboutPage)
